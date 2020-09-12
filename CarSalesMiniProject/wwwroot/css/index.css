@@ -1,0 +1,30 @@
+﻿.main-container {
+    background: url('/images/car_sale_transparent.png');
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height:100%;
+}
+
+body{
+   height:100%;
+}
+
+html{
+    height:100%;
+}
+
+.template-body{
+    height:100%;
+}
+
+.mt-large{
+    margin-top:10rem;
+}
+
+.btn-outline-dark{
+
+}
