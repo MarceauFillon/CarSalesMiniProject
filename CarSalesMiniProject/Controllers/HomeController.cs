@@ -10,12 +10,7 @@ namespace CarSalesMiniProject.Controllers
     {
         public IActionResult Index()
         {
-            Models.Vehicle vehicle = new Models.Vehicle()
-            {
-                Make = "Nissan",
-                Model = "X-Trail"
-            };
-            return View(vehicle);
+            return View();
         }
 
         public IActionResult About()

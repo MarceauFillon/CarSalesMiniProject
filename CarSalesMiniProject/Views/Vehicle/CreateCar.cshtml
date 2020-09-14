@@ -1,0 +1,27 @@
+﻿@model CarSalesMiniProject.ViewModels.CarCreationViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (var form = Html.BeginForm("CreateCar", "Vehicle", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.EditableCar.CarId)
+    @Html.HiddenFor(model => model.EditableCar.VehicleTypeId)
+    <div class="input-group">
+        @Html.TextBoxFor(model => model.EditableCar.Engine, new { @class = "form-control" })
+        @Html.TextBoxFor(model => model.EditableCar.Doors, new { @class = "form-control" })
+        @Html.TextBoxFor(model => model.EditableCar.Wheels, new { @class = "form-control" })
+        @Html.DropDownListFor(model => model.EditableCar.BodyTypeId,
+                new SelectList(Model.AllBodyTypes, "Value", "Text"), "Select Body Type")
+        @Html.DropDownListFor(model => model.EditableCar.MakeId,
+                new SelectList(Model.AllMakes, "Value", "Text"), "Select Make")
+        @Html.DropDownListFor(model => model.EditableCar.ModelId,
+                new SelectList(Model.AllModels, "Value", "Text"), "Select Model")
+
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-success">@(Model.EditableCar.CarId > 0 ? "Update" : "Create")</button>
+        </div>
+    </div>
+    @Html.ValidationSummary()
+}

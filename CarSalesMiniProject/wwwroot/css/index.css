@@ -1,16 +1,16 @@
 ﻿.main-container {
     background: url('/images/car_sale_transparent.png');
 
-    background-attachment: fixed;
     background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
 
-    height:100%;
+    padding-top:16%;
+    padding-bottom:16%;
 }
 
-body{
-   height:100%;
+body {
+    height: 100%;
+    font-family:Verdana;
 }
 
 html{
@@ -18,7 +18,7 @@ html{
 }
 
 .template-body{
-    height:100%;
+    height:92%;
 }
 
 .mt-large{
@@ -26,5 +26,19 @@ html{
 }
 
 .btn-outline-dark{
+    color:black;
+}
 
+.first-caption{
+    font-size:xxx-large;
+}
+
+.home-btn{
+    font-size:large;
+}
+
+footer{
+    padding-top:5px;
+    padding-bottom:5px;
+    text-align:center;
 }

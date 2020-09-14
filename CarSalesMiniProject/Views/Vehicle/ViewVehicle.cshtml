@@ -1,0 +1,35 @@
+﻿@model CarSalesMiniProject.ViewModels.VehicleViewModel
+@using CarSalesMiniProject.ViewModels
+
+@{
+    ViewData["Title"] = "VehicleCreated";
+}
+
+@if (!ViewBag.IdValid)
+{
+    <h1>Vehicle not found.</h1>
+}
+else
+{
+    @if (ViewBag.JustCreated)
+    {
+        <h1>VehicleCreated!</h1>
+
+    }
+    @switch (Model.VehicleType)
+    {
+        case "Car":
+            @await Html.PartialAsync("_CarDetails", (CarViewModel) Model)
+            break;
+       default:
+           <h2> Type of vehicle not identified. </h2>
+           break;
+    }
+
+}
+
+
+
+
+
+
