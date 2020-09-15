@@ -213,3 +213,6 @@ C:\Users\Marceau\source\repos\CarSalesMiniProject\CarSalesTestMiniProject\obj\De
 C:\Users\Marceau\source\repos\CarSalesMiniProject\CarSalesTestMiniProject\obj\Debug\netcoreapp3.1\CarSalesTestMiniProject.dll
 C:\Users\Marceau\source\repos\CarSalesMiniProject\CarSalesTestMiniProject\obj\Debug\netcoreapp3.1\CarSalesTestMiniProject.pdb
 C:\Users\Marceau\source\repos\CarSalesMiniProject\CarSalesTestMiniProject\obj\Debug\netcoreapp3.1\CarSalesTestMiniProject.genruntimeconfig.cache
+C:\Users\Marceau\source\repos\CarSalesMiniProject\CarSalesTestMiniProject\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\Marceau\source\repos\CarSalesMiniProject\CarSalesTestMiniProject\bin\Debug\netcoreapp3.1\Moq.dll
+C:\Users\Marceau\source\repos\CarSalesMiniProject\CarSalesTestMiniProject\obj\Debug\netcoreapp3.1\CarSalesTestMiniProject.csproj.CoreCompileInputs.cache

@@ -27,18 +27,18 @@ namespace CarSalesMiniProject.Data
                     }).ToList();
         }
 
-        public string GetModelNameById(int id)
+        public Model GetModelById(int id)
         {
-           return _database_context.Models.Find(id).Name;
+           return _database_context.Models.Find(id);
         }
-        public string GetMakeNameById(int id)
+        public Make GetMakeById(int id)
         {
-            return _database_context.Makes.Find(id).Name;
+            return _database_context.Makes.Find(id);
         }
 
-        public string GetVehicleTypeNameById(int id)
+        public VehicleType GetVehicleTypeById(int id)
         {
-            return _database_context.VehicleTypes.Find(id).Name;
+            return _database_context.VehicleTypes.Find(id);
         }
 
     }
@@ -57,9 +57,9 @@ namespace CarSalesMiniProject.Data
             return _database_context.Cars.Find(id);
         }
 
-        public string GetBodyTypeNameById(int id)
+        public BodyType GetBodyTypeById(int id)
         {
-            return _database_context.BodyTypes.Find(id).Name;
+            return _database_context.BodyTypes.Find(id);
         }
 
         public List<Car> GetTop10Cars()

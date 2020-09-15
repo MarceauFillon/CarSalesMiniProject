@@ -38,7 +38,7 @@ namespace CarSalesMiniProject.ViewModels
             this.BodyType = carRepository.GetBodyTypeById(car.BodyTypeId).Name;
             this.Make = carRepository.GetMakeById(car.MakeId).Name;
             this.Model = carRepository.GetModelById(car.ModelId).Name;
-            this.VehicleType = carRepository.GetVehicleTypeById(car.ModelId).Name;
+            this.VehicleType = carRepository.GetVehicleTypeById(car.VehicleTypeId).Name;
         }
     }
 
