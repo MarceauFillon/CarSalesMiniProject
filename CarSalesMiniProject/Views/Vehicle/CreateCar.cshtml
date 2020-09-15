@@ -18,11 +18,11 @@
     <div class="form-row justify-content-around mt-3">
         <div class="col-3">
             @Html.DropDownListFor(model => model.EditableCar.MakeId,
-            new SelectList(Model.AllMakes, "Value", "Text"), "Select Make", new { @class = "form-control" })
+            new SelectList(Model.AllMakes, "Value", "Text"), "Select Make", new { @class = "form-control", @id = "choice-make" })
         </div>
         <div class="col-3">
             @Html.DropDownListFor(model => model.EditableCar.ModelId,
-            new SelectList(Model.AllModels, "Value", "Text"), "Select Model", new { @class = "form-control" })
+            new SelectList(Model.AllModels, "Value", "Text"), "Select Model", new { @class = "form-control", @id = "choice-model" })
         </div>
     </div>
     <div class="form-row mt-3 justify-content-around">

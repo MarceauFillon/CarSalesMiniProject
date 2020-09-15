@@ -40,12 +40,7 @@ namespace CarSalesMiniProject.ViewModels
                             Text = m.Name
                         }).ToList();
 
-            this.AllModels = db.Models.OrderBy(m => m.Name).Select(m =>
-                        new SelectListItem
-                        {
-                            Value = m.ModelId.ToString(),
-                            Text = m.Name,
-                        }).ToList();
+            this.AllModels = Enumerable.Empty<SelectListItem>();
 
             this.AllBodyTypes = db.BodyTypes.OrderBy(b => b.Name).Select(b =>
                         new SelectListItem

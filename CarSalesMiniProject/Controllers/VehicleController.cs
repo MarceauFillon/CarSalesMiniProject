@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CarSalesMiniProject.ViewModels;
 using CarSalesMiniProject.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 using CarSalesMiniProject.Helpers;
 
@@ -77,6 +78,27 @@ namespace CarSalesMiniProject.Controllers
         public IActionResult VehicleCreated()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult GetModels(int makeId)
+        {
+            if (makeId >= 0)
+            {
+                IEnumerable<SelectListItem> models = null;
+                using (var db = new VehiclesContext())
+                {
+                    models = db.Models.Where(m => m.MakeId == makeId).OrderBy(m => m.Name).Select(m =>
+                        new SelectListItem
+                        {
+                            Value = m.ModelId.ToString(),
+                            Text = m.Name,
+                        }).ToList(); 
+                }
+                
+                return Json(new SelectList(models, "Value", "Text"));
+            }
+            return null;
         }
     }
 }
