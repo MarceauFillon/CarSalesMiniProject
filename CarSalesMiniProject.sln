@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarSalesMiniProject", "CarSalesMiniProject\CarSalesMiniProject.csproj", "{2CA5470F-BF17-4541-9C50-423384409554}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSalesTestMiniProject", "CarSalesTestMiniProject\CarSalesTestMiniProject.csproj", "{27B3233D-A4B6-4344-BA9A-B92F39381D94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarSalesTestMiniProject", "CarSalesTestMiniProject\CarSalesTestMiniProject.csproj", "{27B3233D-A4B6-4344-BA9A-B92F39381D94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
