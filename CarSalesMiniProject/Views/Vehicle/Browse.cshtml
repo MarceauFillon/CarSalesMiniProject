@@ -29,8 +29,8 @@
                 <div class="col-6 font-weight-bold">
                     @car.value.Make @car.value.Model
                 </div>
-                <div class="col-6">
-                    Created on @car.value.AddDate
+                <div class="col-6 text-right">
+                    @car.value.GetCreationElapsedTime()
                 </div>
             </div>
         </a>

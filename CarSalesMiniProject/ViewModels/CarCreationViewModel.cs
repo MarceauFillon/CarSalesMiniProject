@@ -12,16 +12,22 @@ namespace CarSalesMiniProject.ViewModels
 {
     public class CarCreationViewModel
     {
+        private readonly ICarRepository _carRepository;
         public IEnumerable<SelectListItem> AllMakes { get; set; }
         public IEnumerable<SelectListItem> AllModels { get; set; }
         public IEnumerable<SelectListItem> AllBodyTypes { get; set; }
         public Car EditableCar { get; set; }
 
+        public CarCreationViewModel()
+        {
+
+        }
         public CarCreationViewModel(ICarRepository carRepository)
         {
+            this._carRepository = carRepository;
             this.EditableCar = new Car
             {
-                VehicleTypeId = carRepository.GetVehicleTypeByName("car").VehicleTypeId
+                VehicleTypeId = carRepository.GetVehicleTypeByName("Car").VehicleTypeId
             };
 
             this.AllMakes = carRepository.GetAllMakesSelectList();

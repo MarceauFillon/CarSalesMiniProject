@@ -15,9 +15,41 @@ namespace CarSalesMiniProject.ViewModels
         public string Model { get; set; }
         public string VehicleType { get; set; }
         public bool IsSold { get; set; }
+
         public DateTime AddDate { get; set; }
 
         public int Id { get; set; }
+
+        public string GetCreationElapsedTime()
+        {
+            string stringElapsedTime = String.Empty;
+            try
+            {
+                TimeSpan elapsedTime = DateTime.Now.Subtract(this.AddDate);
+                if (elapsedTime.TotalSeconds < 60)
+                {
+                    stringElapsedTime = "< 1 min ago";
+                }
+                else if (elapsedTime.TotalHours < 1)
+                {
+                    stringElapsedTime = String.Format("{0} minutes ago", elapsedTime.Minutes);
+                }
+                else if (elapsedTime.TotalDays < 1)
+                {
+                    stringElapsedTime = String.Format("{0} hours ago", elapsedTime.Hours);
+                }
+                else
+                {
+                    stringElapsedTime = "> 1 month ago";
+                }
+            }
+            catch
+            {
+                stringElapsedTime = String.Empty;
+            }
+
+            return stringElapsedTime;
+        }
     }
 
     public class CarViewModel: VehicleViewModel
@@ -31,14 +63,13 @@ namespace CarSalesMiniProject.ViewModels
         {
             this.Engine = car.Engine;
             this.IsSold = car.IsSold;
-            this.AddDate = car.AddDate;
             this.Doors = car.Doors;
             this.Wheels = car.Wheels;
             this.Id = car.CarId;
-            this.BodyType = carRepository.GetBodyTypeById(car.BodyTypeId).Name;
-            this.Make = carRepository.GetMakeById(car.MakeId).Name;
-            this.Model = carRepository.GetModelById(car.ModelId).Name;
-            this.VehicleType = carRepository.GetVehicleTypeById(car.VehicleTypeId).Name;
+            this.BodyType = carRepository.GetBodyTypeById(car.BodyTypeId.GetValueOrDefault()).Name;
+            this.Make = carRepository.GetMakeById(car.MakeId.GetValueOrDefault()).Name;
+            this.Model = carRepository.GetModelById(car.ModelId.GetValueOrDefault()).Name;
+            this.VehicleType = carRepository.GetVehicleTypeById(car.VehicleTypeId.GetValueOrDefault()).Name;
         }
     }
 
