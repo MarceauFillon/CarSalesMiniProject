@@ -4,24 +4,54 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (var form = Html.BeginForm("CreateCar", "Vehicle", FormMethod.Post))
+@using (var form = Html.BeginForm("CreateCar", "Vehicle", FormMethod.Post, new { @class = "px-3" }))
 {
+<div class="form-row justify-content-center">
+    <div class="col-10 py-5 text-center">
+        <span class="fa fa-car px-5 py-5 rounded car-icon"></span>
+    </div>
+</div>
+    
     @Html.HiddenFor(model => model.EditableCar.CarId)
     @Html.HiddenFor(model => model.EditableCar.VehicleTypeId)
-    <div class="input-group">
-        @Html.TextBoxFor(model => model.EditableCar.Engine, new { @class = "form-control" })
-        @Html.TextBoxFor(model => model.EditableCar.Doors, new { @class = "form-control" })
-        @Html.TextBoxFor(model => model.EditableCar.Wheels, new { @class = "form-control" })
-        @Html.DropDownListFor(model => model.EditableCar.BodyTypeId,
-                new SelectList(Model.AllBodyTypes, "Value", "Text"), "Select Body Type")
-        @Html.DropDownListFor(model => model.EditableCar.MakeId,
-                new SelectList(Model.AllMakes, "Value", "Text"), "Select Make")
-        @Html.DropDownListFor(model => model.EditableCar.ModelId,
-                new SelectList(Model.AllModels, "Value", "Text"), "Select Model")
-
-        <div class="input-group-append">
-            <button type="submit" class="btn btn-success">@(Model.EditableCar.CarId > 0 ? "Update" : "Create")</button>
+<div class="vehicle-details py-4 mx-5 rounded">
+    <div class="form-row justify-content-around mt-3">
+        <div class="col-3">
+            @Html.DropDownListFor(model => model.EditableCar.MakeId,
+            new SelectList(Model.AllMakes, "Value", "Text"), "Select Make", new { @class = "form-control" })
+        </div>
+        <div class="col-3">
+            @Html.DropDownListFor(model => model.EditableCar.ModelId,
+            new SelectList(Model.AllModels, "Value", "Text"), "Select Model", new { @class = "form-control" })
         </div>
     </div>
+    <div class="form-row mt-3 justify-content-around">
+        <div class="col-3 text-left">
+            <span>Number of doors</span> 
+            @Html.TextBoxFor(model => model.EditableCar.Doors, new { @class = "form-control ml-3 text-center d-inline-block vehicle-input" })
+        </div>
+        <div class="col-3 text-right">
+            <span> Number of wheels </span>
+            @Html.TextBoxFor(model => model.EditableCar.Wheels, new { @class = "form-control ml-3 text-center d-inline-block vehicle-input" })
+        </div>
+    </div>
+    <div class="form-row justify-content-around mt-3">
+        <div class="col-3 text-left">
+            <span>Engine type</span>
+            @Html.TextBoxFor(model => model.EditableCar.Engine, new { @class = "form-control ml-3 text-center d-inline-block vehicle-input" })
+        </div>
+        <div class="col-3">
+            @Html.DropDownListFor(model => model.EditableCar.BodyTypeId,
+            new SelectList(Model.AllBodyTypes, "Value", "Text"), "Select Body Type", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-row justify-content-center">
+        <button type="submit" class="btn btn-outline-dark">Create</button>
+    </div>
+    
+</div>
+<div class="validation-summary py-4 mx-5 text-danger">
     @Html.ValidationSummary()
+</div>
+    
 }

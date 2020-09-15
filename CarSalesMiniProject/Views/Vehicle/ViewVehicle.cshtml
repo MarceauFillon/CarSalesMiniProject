@@ -7,13 +7,13 @@
 
 @if (!ViewBag.IdValid)
 {
-    <h1>Vehicle not found.</h1>
+    <h1 class="text-center mt-5 bg-danger py-2 mx-5 rounded">Vehicle not found.</h1>
 }
 else
 {
     @if (ViewBag.JustCreated)
     {
-        <h1>VehicleCreated!</h1>
+        <h1 class="text-center mt-5 bg-success py-2 mx-5 rounded">Vehicle Created!</h1>
 
     }
     @switch (Model.VehicleType)
@@ -22,7 +22,7 @@ else
             @await Html.PartialAsync("_CarDetails", (CarViewModel) Model)
             break;
        default:
-           <h2> Type of vehicle not identified. </h2>
+           <h2 class="text-center mt-5 bg-danger py-2 mx-5 rounded"> Type of vehicle not identified. </h2>
            break;
     }
 

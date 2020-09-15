@@ -5,19 +5,40 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>
-    @foreach (CarViewModel car in Model.CarList)
+<div class="container-fluid py-5">
+    @{ int rowIndex = 0; }
+    @foreach (var car in Model.CarList.Select((value, index) => new { index, value }))
     {
-        <div class="row">
-            <div class="col-2">
-                @car.Make
+        if (car.index % 2 == 0)
+        {
+            string divClass = "row mt-3";
+            if (rowIndex == 0)
+            {
+                divClass = "row";
+            }
+            @Html.Raw(string.Format("<div class=\"{0}\">", divClass))
+        }
+
+        <a class="col-5 container-fluid vehicle-abstract rounded" asp-controller="Vehicle" asp-action="ViewVehicle" asp-route-VehicleId="@car.value.Id">
+            <div class="row justify-content-center">
+                <div class="col-10 car-image py-5 text-center">
+                    <span class="fa fa-car"></span>
+                </div>
             </div>
-            <div class="col-2">
-                @car.Model
+            <div class="row">
+                <div class="col-6 font-weight-bold">
+                    @car.value.Make @car.value.Model
+                </div>
+                <div class="col-6">
+                    Created on @car.value.AddDate
+                </div>
             </div>
-            <div class="col-2">
-                @car.AddDate
-            </div>
-        </div>
+        </a>
+
+        if (car.index % 2 != 0)
+        {
+            rowIndex++;
+            @Html.Raw("</div>")
+        }
     }
 </div>

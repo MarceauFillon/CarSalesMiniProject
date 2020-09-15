@@ -1,0 +1,20 @@
+﻿.vehicle-abstract, .vehicle-details {
+    background-color: #FCF3CF;
+    text-decoration:none;
+}
+
+.vehicle-input{
+    width:20%;
+}
+
+.car-image, .car-icon {
+    font-size: 100px;
+}
+
+.car-icon{
+    border: solid black 1px;
+}
+
+.validation-summary-errors ul{
+    list-style:none;
+}

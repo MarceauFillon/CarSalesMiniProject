@@ -15,6 +15,8 @@ namespace CarSalesMiniProject.ViewModels
         public string VehicleType { get; set; }
         public bool IsSold { get; set; }
         public DateTime AddDate { get; set; }
+
+        public int Id { get; set; }
     }
 
     public class CarViewModel: VehicleViewModel
@@ -31,6 +33,7 @@ namespace CarSalesMiniProject.ViewModels
             this.AddDate = car.AddDate;
             this.Doors = car.Doors;
             this.Wheels = car.Wheels;
+            this.Id = car.CarId;
 
             using var db = new VehiclesContext();
             {

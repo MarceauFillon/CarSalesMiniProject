@@ -1,78 +1,48 @@
 ﻿@model CarSalesMiniProject.ViewModels.CarViewModel
 
-<div>
-    <h4>Car</h4>
-    <hr />
-    <div class="row">
-        <div class="col-2">
-            Engine:
-        </div>
-        <div class="col-2">
-            @Model.Engine
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <h1 class="col-10 text-center">
+            @Model.Make @Model.Model
+        </h1>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-10 py-5 text-center">
+            <span class="fa fa-car px-5 py-5 rounded car-icon"></span>
         </div>
     </div>
-    <div class="row">
-        <div class="col-2">
-            Doors:
-        </div>
-        <div class="col-2">
-            @Model.Doors
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-            Wheels:
-        </div>
-        <div class="col-2">
-            @Model.Wheels
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-            Body Type:
-        </div>
-        <div class="col-2">
-            @Model.BodyType
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-            Is sold:
-        </div>
-        <div class="col-2">
-            @Model.IsSold
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-            Date:
-        </div>
-        <div class="col-2">
-            @Model.AddDate
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-            Make:
-        </div>
-        <div class="col-2">
-            @Model.Make
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-            Model:
-        </div>
-        <div class="col-2">
-            @Model.Model
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-            Vehicle Type:
-        </div>
-        <div class="col-2">
-            @Model.VehicleType
+    <div class="row justify-content-center mx-5">
+        <div class="col-8 container-fluid vehicle-details py-4 px-4 rounded">
+            <div class="row mt-3 justify-content-around">
+                <div class="col-6 text-left">
+                    <span>Number of doors:</span>
+                    <span>@Model.Doors</span>
+                </div>
+                <div class="col-6 text-right">
+                    <span> Number of wheels:</span>
+                    <span>@Model.Wheels</span>
+                </div>
+            </div>
+            <div class="row justify-content-around mt-3">
+                <div class="col-6 text-left">
+                    <span>Engine type: </span>
+                    <span>@Model.Engine</span>
+                </div>
+                <div class="col-6 text-right">
+                    <span>Body type: </span>
+                    <span>@Model.BodyType</span>
+                </div>
+            </div>
+            <div class="row justify-content-around mt-3">
+                <div class="col-6 text-left">
+                    <span>Available: </span>
+                    <span>@(Model.IsSold ? "No" : "Yes")</span>
+                </div>
+                <div class="col-6 text-right">
+                    <span>Added on: </span>
+                    <span>@Model.AddDate</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>

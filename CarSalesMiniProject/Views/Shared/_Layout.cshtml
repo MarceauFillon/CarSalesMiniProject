@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width" />
     <title>carsales mini_project</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="~/css/index.css?v=1.0"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/index.css?v=1.0" />
+    <link rel="stylesheet" href="~/css/vehicle.css?v=1.0" />
 
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Carsales miniproject</a>
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">Carsales miniproject</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -22,9 +24,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Vehicle" asp-action="Browse" asp-route-vehicleType="car">Browse cars</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" asp-controller="Vehicle" asp-action="Create" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,10 +38,14 @@
         </nav>
     </header>
     
-    @RenderBody()
-
-    <footer>
-        Marceau Fillon - Solution created to answer carsales coding challenge for a Junior Software Developper position.
+    <div class="content-wrap">
+        @RenderBody()
+    </div>
+   
+    <footer class="footer">
+        <div class="footer-container">
+            <span>Marceau Fillon - Solution created to answer carsales coding challenge for a Junior Software Developper position.</span>
+        </div>
     </footer>
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
