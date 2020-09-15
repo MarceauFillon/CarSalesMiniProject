@@ -19,7 +19,7 @@ namespace CarSalesMiniProject.ViewModels
         public DateTime AddDate { get; set; }
 
         public int Id { get; set; }
-
+        public string CreationElapsedTime { get; set; }
         public string GetCreationElapsedTime()
         {
             string stringElapsedTime = String.Empty;
@@ -37,6 +37,10 @@ namespace CarSalesMiniProject.ViewModels
                 else if (elapsedTime.TotalDays < 1)
                 {
                     stringElapsedTime = String.Format("{0} hours ago", elapsedTime.Hours);
+                }
+                else if (elapsedTime.TotalDays > 1 && elapsedTime.TotalDays < 30)
+                {
+                    stringElapsedTime = String.Format("{0} days ago", elapsedTime.Days);
                 }
                 else
                 {
@@ -70,6 +74,8 @@ namespace CarSalesMiniProject.ViewModels
             this.Make = carRepository.GetMakeById(car.MakeId.GetValueOrDefault()).Name;
             this.Model = carRepository.GetModelById(car.ModelId.GetValueOrDefault()).Name;
             this.VehicleType = carRepository.GetVehicleTypeById(car.VehicleTypeId.GetValueOrDefault()).Name;
+            this.AddDate = car.AddDate;
+            this.CreationElapsedTime = GetCreationElapsedTime();
         }
     }
 
@@ -77,14 +83,27 @@ namespace CarSalesMiniProject.ViewModels
     {
         public List<CarViewModel> CarList { get; set; }
 
-        public CarListViewModel(ICarRepository carRepository)
+        public CarListViewModel(ICarRepository carRepository, int loadMoreFrom = 0)
         {
-            this.CarList = new List<CarViewModel>();
-            List<Car> carList = carRepository.GetTop10Cars();
-            foreach(Car car in carList)
+            if(loadMoreFrom == 0)
             {
-                this.CarList.Add(new CarViewModel(car, carRepository));
-            }  
+                this.CarList = new List<CarViewModel>();
+                List<Car> carList = carRepository.GetTop10Cars();
+                foreach (Car car in carList)
+                {
+                    this.CarList.Add(new CarViewModel(car, carRepository));
+                }
+            }
+            else
+            {
+                this.CarList = new List<CarViewModel>();
+                List<Car> carList = carRepository.Get10MoreCars(loadMoreFrom);
+                foreach (Car car in carList)
+                {
+                    this.CarList.Add(new CarViewModel(car, carRepository));
+                }
+            }
+            
         }
     }
 }

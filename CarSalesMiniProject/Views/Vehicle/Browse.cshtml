@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container-fluid py-5">
+<div class="container-fluid py-5 " id="vehicles-abstracts">
     @{ int rowIndex = 0; }
     @foreach (var car in Model.CarList.Select((value, index) => new { index, value }))
     {

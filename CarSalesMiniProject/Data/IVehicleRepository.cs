@@ -27,5 +27,7 @@ namespace CarSalesMiniProject.Data
 
         List<Car> GetTop10Cars();
         IEnumerable<SelectListItem> GetAllBodyTypesSelectList();
+
+        List<Car> Get10MoreCars(int carsToSkip);
     }
 }

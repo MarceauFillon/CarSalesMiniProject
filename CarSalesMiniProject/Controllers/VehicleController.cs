@@ -106,5 +106,12 @@ namespace CarSalesMiniProject.Controllers
             }
             return null;
         }
+
+        public IActionResult Get10MoreCars(int numberOfLoadedCars)
+        {
+            CarListViewModel carListViewModel = new CarListViewModel(_carRepository, numberOfLoadedCars);
+
+            return Json(carListViewModel.CarList);
+        }
     }
 }

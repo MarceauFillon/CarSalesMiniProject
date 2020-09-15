@@ -89,7 +89,7 @@ namespace CarSalesMiniProject.Data
 
         public List<Car> GetTop10Cars()
         {
-            return _databaseContext.Cars.Take(10).ToList();
+            return _databaseContext.Cars.OrderBy(c => c.AddDate).Take(10).ToList();
         }
 
         public IEnumerable<SelectListItem> GetAllBodyTypesSelectList()
@@ -100,6 +100,11 @@ namespace CarSalesMiniProject.Data
                             Value = b.BodyTypeId.ToString(),
                             Text = b.Name,
                         }).ToList();
+        }
+
+        public List<Car> Get10MoreCars(int carsToSkip)
+        {
+            return _databaseContext.Cars.OrderBy(c => c.AddDate).Skip(carsToSkip).Take(10).ToList();
         }
     } 
 }

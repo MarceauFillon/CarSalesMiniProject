@@ -21,7 +21,7 @@ namespace CarSalesMiniProject
             services.AddMvc();
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddDbContext<VehiclesContext>(options => options.UseSqlServer(
-                @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=MiniProjectDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+                @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\USERS\MARCEAU\SOURCE\REPOS\CARSALESMINIPROJECT\MINIPROJECTDB.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
