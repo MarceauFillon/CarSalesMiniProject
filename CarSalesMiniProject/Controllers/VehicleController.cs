@@ -22,6 +22,7 @@ namespace CarSalesMiniProject.Controllers
         [HttpGet]
         public IActionResult CreateCar()
         {
+            ViewBag.ActiveNav = "Create";
             return View(new CarCreationViewModel(_carRepository));
         }
 
@@ -37,11 +38,13 @@ namespace CarSalesMiniProject.Controllers
                     creationViewModel.EditableCar.IsSold = false;
                     id = _carRepository.InsertCar(creationViewModel.EditableCar);
                 }
+                ViewBag.ActiveNav = "Browse";
                 return RedirectToAction("ViewVehicle", new { VehicleId = id, JustCreated = true });
             }
             else
             {
                 CarCreationViewModel carCreationViewModel = new CarCreationViewModel(_carRepository);
+                ViewBag.ActiveNav = "Create";
                 return base.View(carCreationViewModel);
             }
         }
@@ -56,6 +59,7 @@ namespace CarSalesMiniProject.Controllers
 
             if (VehicleId <= 0)
             {
+                ViewBag.ActiveNav = "Browse";
                 return View();
             }
             else
@@ -64,22 +68,28 @@ namespace CarSalesMiniProject.Controllers
                 carViewModel = new CarViewModel(car, _carRepository);
                 if (carViewModel == null)
                 {
+                    ViewBag.ActiveNav = "Browse";
                     return View();
 ;               }
             }
 
             ViewBag.IdValid = true;
+
+            ViewBag.ActiveNav = "Browse";
             return View(carViewModel);
         }
 
         public IActionResult Browse(string vehicleType="")
         {
             CarListViewModel carList = new CarListViewModel(_carRepository);
+
+            ViewBag.ActiveNav = "Browse";
             return View(carList);
         }
         
         public IActionResult VehicleCreated()
         {
+            ViewBag.ActiveNav = "Browse";
             return View();
         }
 

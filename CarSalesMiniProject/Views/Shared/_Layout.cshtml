@@ -19,15 +19,20 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item @(ViewBag.ActiveNav == "Home" ? "active" : "")">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home@(ViewBag.ActiveNav == "Home" ? Html.Raw("<span class=\"sr-only\">(current)</span>") : Html.Raw(""))</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Vehicle" asp-action="Browse" asp-route-vehicleType="car">Browse cars</a>
+                    <li class="nav-item dropdown @(ViewBag.ActiveNav == "Browse" ? "active" : "")">
+                        <a class="nav-link dropdown-toggle" asp-controller="Vehicle" asp-action="Browse" id="navbarBrowseDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Browse vehicles @(ViewBag.ActiveNav == "Browse" ? Html.Raw("<span class=\"sr-only\">(current)</span>") : Html.Raw(""))
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" asp-controller="Vehicle" asp-action="Browse" asp-route-vehicleType="Cars">Browse cars</a>
+                        </div>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" asp-controller="Vehicle" asp-action="Create" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Create vehicle
+                    <li class="nav-item dropdown @(ViewBag.ActiveNav == "Create" ? "active" : "")">
+                        <a class="nav-link dropdown-toggle" asp-controller="Vehicle" asp-action="Create" id="navbarCreateDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Create vehicle @(ViewBag.ActiveNav == "Create" ? Html.Raw("<span class=\"sr-only\">(current)</span>") : Html.Raw(""))
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" asp-controller="Vehicle" asp-action="CreateCar">Create car</a>

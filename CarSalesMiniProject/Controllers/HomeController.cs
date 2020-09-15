@@ -10,11 +10,7 @@ namespace CarSalesMiniProject.Controllers
     {
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult About()
-        {
+            ViewBag.ActiveNav = "Home";
             return View();
         }
     }
