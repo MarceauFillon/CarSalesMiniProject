@@ -29,7 +29,7 @@ namespace CarSalesMiniProject.Data
 
         public Model GetModelById(int id)
         {
-           return _database_context.Models.Find(id);
+            return _database_context.Models.Find(id);
         }
         public Make GetMakeById(int id)
         {
