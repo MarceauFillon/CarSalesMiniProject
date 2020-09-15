@@ -10,11 +10,14 @@ namespace CarSalesMiniProject.Data
 {
     public interface IVehicleRepository
     {
-        IEnumerable<SelectListItem> GetModelSelectListItemsFromMakeId(int id);
+        IEnumerable<SelectListItem> GetModelsSelectListItemsFromMakeId(int id);
         Model GetModelById(int id);
         Make GetMakeById(int id);
+        IEnumerable<SelectListItem> GetAllMakesSelectList();
         VehicleType GetVehicleTypeById(int id);
+        VehicleType GetVehicleTypeByName(string name);
     }
+
     public interface ICarRepository : IVehicleRepository
     {
         int InsertCar(Car car);
@@ -23,5 +26,6 @@ namespace CarSalesMiniProject.Data
         BodyType GetBodyTypeById(int id);
 
         List<Car> GetTop10Cars();
+        IEnumerable<SelectListItem> GetAllBodyTypesSelectList();
     }
 }

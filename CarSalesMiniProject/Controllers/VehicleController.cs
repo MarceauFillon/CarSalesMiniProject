@@ -22,7 +22,7 @@ namespace CarSalesMiniProject.Controllers
         [HttpGet]
         public IActionResult CreateCar()
         {
-            return View(new CarCreationViewModel());
+            return View(new CarCreationViewModel(_carRepository));
         }
 
         [HttpPost]
@@ -41,7 +41,7 @@ namespace CarSalesMiniProject.Controllers
             }
             else
             {
-                CarCreationViewModel carCreationViewModel = new CarCreationViewModel();
+                CarCreationViewModel carCreationViewModel = new CarCreationViewModel(_carRepository);
                 return base.View(carCreationViewModel);
             }
         }
@@ -90,7 +90,7 @@ namespace CarSalesMiniProject.Controllers
             {
                 IEnumerable<SelectListItem> models = null;
 
-                models = _carRepository.GetModelSelectListItemsFromMakeId(makeId); 
+                models = _carRepository.GetModelsSelectListItemsFromMakeId(makeId); 
                 
                 return Json(new SelectList(models, "Value", "Text"));
             }

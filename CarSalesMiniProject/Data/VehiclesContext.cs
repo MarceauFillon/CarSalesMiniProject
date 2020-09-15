@@ -14,10 +14,9 @@ namespace CarSalesMiniProject.Data
         public DbSet<VehicleType> VehicleTypes { get; set; }
         public DbSet<BodyType> BodyTypes { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public VehiclesContext(DbContextOptions<VehiclesContext> options): base(options)
         {
-            optionsBuilder.UseSqlServer(
-                @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=MiniProjectDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
         }
     }
 }

@@ -49,15 +49,11 @@ namespace CarSalesMiniProject.ViewModels
         public CarListViewModel(ICarRepository carRepository)
         {
             this.CarList = new List<CarViewModel>();
-            using var db = new VehiclesContext();
+            List<Car> carList = carRepository.GetTop10Cars();
+            foreach(Car car in carList)
             {
-                List<Car> carList = carRepository.GetTop10Cars();
-                foreach(Car car in carList)
-                {
-                    this.CarList.Add(new CarViewModel(car, carRepository));
-                }
-            }
-            
+                this.CarList.Add(new CarViewModel(car, carRepository));
+            }  
         }
     }
 }
