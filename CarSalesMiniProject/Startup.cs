@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CarSalesMiniProject.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +18,8 @@ namespace CarSalesMiniProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddScoped<ICarRepository, CarRepository>();
+            services.AddDbContext<VehiclesContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

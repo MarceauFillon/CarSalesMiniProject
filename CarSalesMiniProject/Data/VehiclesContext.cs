@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using CarSalesMiniProject.Models;
 
-namespace CarSalesMiniProject.Helpers
+namespace CarSalesMiniProject.Data
 {
     public class VehiclesContext : DbContext
     {

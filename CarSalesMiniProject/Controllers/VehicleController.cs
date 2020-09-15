@@ -7,12 +7,18 @@ using CarSalesMiniProject.ViewModels;
 using CarSalesMiniProject.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-using CarSalesMiniProject.Helpers;
+using CarSalesMiniProject.Data;
 
 namespace CarSalesMiniProject.Controllers
 {
     public class VehicleController : Controller
     {
+        private readonly ICarRepository _carRepository;
+        public VehicleController(ICarRepository carRepository)
+        {
+            _carRepository = carRepository;
+        }
+
         [HttpGet]
         public IActionResult CreateCar()
         {
@@ -25,53 +31,50 @@ namespace CarSalesMiniProject.Controllers
             int id = 0;
             if (ModelState.IsValid)
             {
-                using (var db = new VehiclesContext())
+                if (creationViewModel.EditableCar.CarId <= 0)
                 {
-                    if (creationViewModel.EditableCar.CarId <= 0)
-                    {
-                        creationViewModel.EditableCar.AddDate = DateTime.Now;
-                        creationViewModel.EditableCar.IsSold = false;
-                        db.Cars.Add(creationViewModel.EditableCar);
-                        db.SaveChanges();
-                        id = creationViewModel.EditableCar.CarId;
-                    }
+                    creationViewModel.EditableCar.AddDate = DateTime.Now;
+                    creationViewModel.EditableCar.IsSold = false;
+                    id = _carRepository.InsertCar(creationViewModel.EditableCar);
                 }
                 return RedirectToAction("ViewVehicle", new { VehicleId = id, JustCreated = true });
             }
             else
-                return View(new CarCreationViewModel());
+            {
+                CarCreationViewModel carCreationViewModel = new CarCreationViewModel();
+                return base.View(carCreationViewModel);
+            }
         }
 
         public IActionResult ViewVehicle(int VehicleId, bool JustCreated = false)
         {
-            VehicleViewModel vehicle = null;
+            Car car = null;
+            CarViewModel carViewModel = null;
 
             ViewBag.IdValid = false;
             ViewBag.JustCreated = JustCreated;
 
-            using (var db = new VehiclesContext())
+            if (VehicleId <= 0)
             {
-                if (VehicleId <= 0)
+                return View();
+            }
+            else
+            {
+                car = _carRepository.GetCarById(VehicleId);
+                carViewModel = new CarViewModel(car, _carRepository);
+                if (carViewModel == null)
                 {
                     return View();
-                }
-                else
-                {
-                    vehicle = new CarViewModel(db.Cars.FirstOrDefault(v => v.CarId == VehicleId));
-                    if (vehicle == null)
-                    {
-                        return View();
-;                   }
-                }
+;               }
             }
 
             ViewBag.IdValid = true;
-            return View(vehicle);
+            return View(carViewModel);
         }
 
         public IActionResult Browse(string vehicleType="")
         {
-            CarListViewModel carList = new CarListViewModel();
+            CarListViewModel carList = new CarListViewModel(_carRepository);
             return View(carList);
         }
         
@@ -86,15 +89,8 @@ namespace CarSalesMiniProject.Controllers
             if (makeId >= 0)
             {
                 IEnumerable<SelectListItem> models = null;
-                using (var db = new VehiclesContext())
-                {
-                    models = db.Models.Where(m => m.MakeId == makeId).OrderBy(m => m.Name).Select(m =>
-                        new SelectListItem
-                        {
-                            Value = m.ModelId.ToString(),
-                            Text = m.Name,
-                        }).ToList(); 
-                }
+
+                models = _carRepository.GetModelSelectListItemsFromMakeId(makeId); 
                 
                 return Json(new SelectList(models, "Value", "Text"));
             }

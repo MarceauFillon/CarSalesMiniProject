@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-using CarSalesMiniProject.Helpers;
+using CarSalesMiniProject.Data;
 using CarSalesMiniProject.Models;
 
 

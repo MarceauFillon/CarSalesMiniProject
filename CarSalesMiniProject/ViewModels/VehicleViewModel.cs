@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using CarSalesMiniProject.Models;
-using CarSalesMiniProject.Helpers;
+using CarSalesMiniProject.Data;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CarSalesMiniProject.ViewModels
 {
@@ -26,7 +27,7 @@ namespace CarSalesMiniProject.ViewModels
         public int Doors { get; set; }
         public int Wheels { get; set; }
 
-        public CarViewModel(Car car)
+        public CarViewModel(Car car, ICarRepository carRepository)
         {
             this.Engine = car.Engine;
             this.IsSold = car.IsSold;
@@ -34,14 +35,10 @@ namespace CarSalesMiniProject.ViewModels
             this.Doors = car.Doors;
             this.Wheels = car.Wheels;
             this.Id = car.CarId;
-
-            using var db = new VehiclesContext();
-            {
-                this.BodyType = db.BodyTypes.Where(b => b.BodyTypeId == car.BodyTypeId).FirstOrDefault().Name;
-                this.Make = db.Makes.Where(m => m.MakeId == car.MakeId).FirstOrDefault().Name;
-                this.Model = db.Models.Where(m => m.ModelId == car.ModelId).FirstOrDefault().Name;
-                this.VehicleType = db.VehicleTypes.Where(v => v.VehicleTypeId == car.VehicleTypeId).FirstOrDefault().Name;
-            }
+            this.BodyType = carRepository.GetBodyTypeById(car.BodyTypeId).Name;
+            this.Make = carRepository.GetMakeById(car.MakeId).Name;
+            this.Model = carRepository.GetModelById(car.ModelId).Name;
+            this.VehicleType = carRepository.GetVehicleTypeById(car.ModelId).Name;
         }
     }
 
@@ -49,15 +46,15 @@ namespace CarSalesMiniProject.ViewModels
     {
         public List<CarViewModel> CarList { get; set; }
 
-        public CarListViewModel()
+        public CarListViewModel(ICarRepository carRepository)
         {
             this.CarList = new List<CarViewModel>();
             using var db = new VehiclesContext();
             {
-                List<Car> carList = db.Cars.OrderBy(c => c.AddDate).Take(10).ToList();
+                List<Car> carList = carRepository.GetTop10Cars();
                 foreach(Car car in carList)
                 {
-                    this.CarList.Add(new CarViewModel(car));
+                    this.CarList.Add(new CarViewModel(car, carRepository));
                 }
             }
             
